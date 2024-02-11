@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 화면 </title>
+    <style>
+        .detail table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .detail table th, .detail table td {
+            border:solid 1px #000;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>배너 관리 - 배너 등록</h1>
+    <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+
+
+    <div class="detail" >
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>배너명</th>
+                    <label>
+                        <input type="text" name="bannerName" placeholder="배너명 입력" required />
+                    </label>
+                </tr>
+                <tr>
+                    <th>배너 파일</th>
+                    <td>
+                        <p th:text="${member.userName}"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>링크 주소</th>
+                    <label>
+                        <input type="text" name="link" placeholder="링크 주소 입력" required />
+                    </label>
+                </tr>
+                <tr>
+                    <th>오픈 방법</th>
+                    <td>
+                        <p th:text="${member.regDt}"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>정렬 순서</th>
+                    <label>
+                        <input type="text" name="order" placeholder="정렬 순서 입력" required />
+                    </label>
+                </tr>
+                <tr>
+                    <th>공개 여부</th>
+                    <td>
+                        <p th:text="${member.adminYn}"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <a href="list.do"> 목록 이동 </a>
+
+        </div>
+    </div>
+
+
+</body>
+</html>
