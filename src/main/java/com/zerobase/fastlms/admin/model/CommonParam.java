@@ -38,11 +38,11 @@ public class CommonParam {
         
         StringBuilder sb = new StringBuilder();
         
-        if (searchType != null && searchType.length() > 0) {
+        if (searchType != null && !searchType.isEmpty()) {
             sb.append(String.format("searchType=%s", searchType));
         }
         
-        if (searchValue != null && searchValue.length() > 0) {
+        if (searchValue != null && !searchValue.isEmpty()) {
             if (sb.length() > 0) {
                 sb.append("&");
             }

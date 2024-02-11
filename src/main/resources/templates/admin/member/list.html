@@ -44,13 +44,17 @@
             <p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>
 
             <form method="get">
-                <select name="searchType">
-                    <option value="all">전체</option>
-                    <option th:selected="${#strings.equals(param.searchType, 'userId')}" value="userId">아이디</option>
-                    <option th:selected="${#strings.equals(param.searchType, 'userName')}" value="userName">이름</option>
-                    <option th:selected="${#strings.equals(param.searchType, 'phone')}" value="phone">연락처</option>
-                </select>
-                <input th:value="${param.searchValue}" type="sear" name="searchValue" placeholder="검색어 입력"/>
+                <label>
+                    <select name="searchType">
+                        <option value="all">전체</option>
+                        <option th:selected="${#strings.equals(param.searchType, 'userId')}" value="userId">아이디</option>
+                        <option th:selected="${#strings.equals(param.searchType, 'userName')}" value="userName">이름</option>
+                        <option th:selected="${#strings.equals(param.searchType, 'phone')}" value="phone">연락처</option>
+                    </select>
+                </label>
+                <label>
+                    <input th:value="${param.searchValue}" type="sear" name="searchValue" placeholder="검색어 입력"/>
+                </label>
                 <button type="submit">검색</button>
             </form>
        </div>
@@ -77,6 +81,9 @@
                     <th>
                         관리자여부
                     </th>
+                    <th>
+                        마지막 로그인 일자
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -94,11 +101,14 @@
                         <p th:if="${x.emailAuthYn eq false}">N</p>
                     </td>
                     <td>
-                        <p th:text="${x.regDt}">2021.01.01</p>
+                        <p th:text="${x.regDtText}">2024.02.11</p>
                     </td>
                     <td>
                         <p th:if="${x.adminYn}">Y</p>
                         <p th:if="${x.adminYn eq false}">N</p>
+                    </td>
+                    <td>
+                        <p th:text="${x.logDtText}">2024.02.11</p>
                     </td>
                 </tr>
             </tbody>

@@ -28,7 +28,7 @@ public class AdminMemberController extends BaseController {
         List<MemberDto> members = memberService.list(parameter);
         
         long totalCount = 0;
-        if (members != null && members.size() > 0) {
+        if (members != null && !members.isEmpty()) {
             totalCount = members.get(0).getTotalCount();
         }
         String queryString = parameter.getQueryString();
