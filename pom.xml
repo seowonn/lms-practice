@@ -41,7 +41,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
+            <!--빌드 뿐만아니라 실행, 컴파일에도 tomcat을 사용하기 위해 scope 제거-->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
