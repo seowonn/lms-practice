@@ -48,7 +48,6 @@ public class MemberServiceImpl implements MemberService {
     
         Optional<Member> optionalMember = memberRepository.findById(parameter.getUserId());
         if (optionalMember.isPresent()) {
-            //현재 userId에 해당하는 데이터 존재
             return false;
         }
 
