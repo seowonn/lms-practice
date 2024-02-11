@@ -15,8 +15,8 @@
     </style>
 </head>
 <body>
-    <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
     <h1>관리자 회원 관리 - 회원 상세 정보</h1>
+    <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
 
 
     <div class="detail" >
@@ -100,6 +100,26 @@
             <a href="list.do"> 목록 </a>
 
         </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>NO</th>
+                <th>로그인 일자</th>
+                <th>접속 IP</th>
+                <th>접속 UserAgent</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="x : ${list}">
+                <td th:text="${x.seq}">1</td>
+                <td th:text="${x.logDtText}"></td>
+                <td th:text="${x.accessIp}"></td>
+                <td th:text="${x.userAgent}"></td>
+            </tr>
+            </tbody>
+        </table>
+
 
 
     </div>

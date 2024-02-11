@@ -148,8 +148,6 @@ public class MemberServiceImpl implements MemberService {
         }
         
         return list;
-        
-        //return memberRepository.findAll();
     }
     
     @Override
