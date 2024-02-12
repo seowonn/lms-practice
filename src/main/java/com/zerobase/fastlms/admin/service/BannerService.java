@@ -5,6 +5,6 @@ import com.zerobase.fastlms.admin.model.BannerParam;
 
 import java.util.List;
 
-public interface BannerService {
+public interface BannerService{
     List<BannerDto> list(BannerParam parameter);
 }
