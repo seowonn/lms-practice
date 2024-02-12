@@ -33,83 +33,52 @@
             color: red;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function (){
+            $('selectAll').on('click', function() {
+                var checked = $(this).is(':checked');
+
+                $('#bannerList input[type=checkbox]').each(function (k, v) {
+                    $(this).prop('checked', checked);
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
     <h1>배너 관리</h1>
 
     <div class="list">
+        <div class="buttons">
+            <p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>
+            <a href="/admin/banner/add.do">배너 등록</a>
+            <button id="deleteButton" type="button">선택 삭제</button>
+        </div>
 
-        <form id="bannerForm">
-            <div>
-                <input type="checkbox" name="banner" value="1"> 배너 1
-            </div>
-            <div>
-                <input type="checkbox" name="banner" value="2"> 배너 2
-            </div>
-            <div>
-                <input type="checkbox" name="banner" value="3"> 배너 3
-            </div>
-            <!-- 여기에 더 많은 배너와 체크박스를 추가할 수 있습니다. -->
-            <button type="button" onclick="submitForm()">배너 등록</button>
-        </form>
-
-<!--        <div class="search-form">-->
-<!--            <form method="get">-->
-<!--                <label>-->
-<!--                    <select name="searchType">-->
-<!--                        <option value="all">전체</option>-->
-<!--                        <option th:selected="${#strings.equals(param.searchType, 'userId')}" value="userId">아이디</option>-->
-<!--                        <option th:selected="${#strings.equals(param.searchType, 'userName')}" value="userName">이름</option>-->
-<!--                        <option th:selected="${#strings.equals(param.searchType, 'phone')}" value="phone">연락처</option>-->
-<!--                    </select>-->
-<!--                </label>-->
-<!--                <label>-->
-<!--                    <input th:value="${param.searchValue}" type="sear" name="searchValue" placeholder="검색어 입력"/>-->
-<!--                </label>-->
-<!--                <button type="submit">검색</button>-->
-<!--            </form>-->
-
-<!--            <p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>-->
-<!--       </div>-->
-
-<!--        <table>-->
-<!--            <thead>-->
-<!--                <tr>-->
-<!--                    <th>NO</th>-->
-<!--                    <th>배너명</th>-->
-<!--                    <th>이미지</th>-->
-<!--                    <th>등록일</th>-->
-<!--                </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr th:each="x : ${list}">-->
-<!--                    <td th:text="${x.seq}">1</td>-->
-<!--                    <td>-->
-<!--                        <a th:text="${x.userId}"-->
-<!--                           th:href="${'detail.do?userId=' + x.userId}">-->
-<!--                            satcop@naver.com</a>-->
-<!--                    </td>-->
-<!--                    <td th:text="${x.userName}">홍길동</td>-->
-<!--                    <td th:text="${x.phone}">010-1111-2222</td>-->
-<!--                    <td>-->
-<!--                        <p th:if="${x.emailAuthYn}">Y</p>-->
-<!--                        <p th:if="${x.emailAuthYn eq false}">N</p>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <p th:text="${x.regDtText}">2024.02.11</p>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <p th:if="${x.adminYn}">Y</p>-->
-<!--                        <p th:if="${x.adminYn eq false}">N</p>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <p th:text="${x.logDtText}">2024.02.11</p>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-
+        <table>
+            <thead>
+                <tr>
+                    <th><label for="selectAll"></label><input id="selectAll" type="checkbox"/></th>
+                    <th>NO</th>
+                    <th>배너명</th>
+                    <th>이미지</th>
+                    <th>등록일</th>
+                </tr>
+            </thead>
+            <tbody id="bannerList">
+                <tr th:each="x : ${list}">
+                    <th><label for="select"></label><input type="checkbox" id="select"></th>
+                    <td th:text="${x.seq}">1</td>
+                    <td th:text="${x.bannerName}">배너명</td>
+                    <td><img th:src="${x.bannerUrl}" alt="배너 이미지" src=""></td>
+                    <td>
+                        <p th:text="${x.regDtText}">2024.02.11</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
         <div class="pager" th:utext="${pager}">
         </div>

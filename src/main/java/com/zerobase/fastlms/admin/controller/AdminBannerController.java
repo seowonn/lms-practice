@@ -1,14 +1,17 @@
 package com.zerobase.fastlms.admin.controller;
 
 import com.zerobase.fastlms.admin.dto.BannerDto;
+import com.zerobase.fastlms.admin.model.BannerInput;
 import com.zerobase.fastlms.admin.model.BannerParam;
 import com.zerobase.fastlms.admin.service.BannerService;
 import com.zerobase.fastlms.course.controller.BaseController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -36,5 +39,20 @@ public class AdminBannerController extends BaseController {
         model.addAttribute("pager", pagerHtml);
 
         return "admin/banner/list";
+    }
+
+    @GetMapping("/admin/banner/add.do")
+    public String add() {
+        return "admin/banner/add.do";
+    }
+
+    @PostMapping("/admin/banner/add.do")
+    public String bannerSubmit(Model model, HttpServletRequest request
+            , BannerInput parameter) {
+//
+//        boolean result = memberService.register(parameter);
+//        model.addAttribute("result", result);
+
+        return "/admin/banner/add.do";
     }
 }

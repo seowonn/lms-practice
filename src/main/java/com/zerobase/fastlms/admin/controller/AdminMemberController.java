@@ -3,10 +3,9 @@ package com.zerobase.fastlms.admin.controller;
 
 import com.zerobase.fastlms.admin.dto.LoginHistoryDto;
 import com.zerobase.fastlms.admin.dto.MemberDto;
-import com.zerobase.fastlms.admin.model.MemberInput;
 import com.zerobase.fastlms.admin.model.MemberParam;
 import com.zerobase.fastlms.course.controller.BaseController;
-import com.zerobase.fastlms.member.repository.LoginHistoryRepository;
+import com.zerobase.fastlms.admin.model.MemberInput;
 import com.zerobase.fastlms.member.service.LoginHistoryService;
 import com.zerobase.fastlms.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +23,6 @@ public class AdminMemberController extends BaseController {
     private final MemberService memberService;
     private final LoginHistoryService loginHistoryService;
 
-    private final LoginHistoryRepository loginHistoryRepository;
-    
     @GetMapping("/admin/member/list.do")
     public String list(Model model, MemberParam parameter) {
         
