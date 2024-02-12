@@ -43,16 +43,16 @@ public class AdminBannerController extends BaseController {
 
     @GetMapping("/admin/banner/add.do")
     public String add() {
-        return "admin/banner/add.do";
+        return "admin/banner/add";
     }
 
     @PostMapping("/admin/banner/add.do")
     public String bannerSubmit(Model model, HttpServletRequest request
             , BannerInput parameter) {
-//
-//        boolean result = memberService.register(parameter);
-//        model.addAttribute("result", result);
 
-        return "/admin/banner/add.do";
+        boolean result = bannerService.register(parameter);
+        model.addAttribute("result", result);
+
+        return "admin/banner/list";
     }
 }
