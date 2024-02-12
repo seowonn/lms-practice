@@ -13,13 +13,24 @@
         }
 
     </style>
+
+    <script>
+        function updateFileName() {
+            var fileInput = document.getElementById('fileInput');
+            var fileNameDisplay = document.getElementById('fileName');
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = fileInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = "선택된 파일 없음";
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>배너 관리 - 배너 등록</h1>
     <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+    <h1>배너 관리 - 배너 등록</h1>
 
-
-    <div class="detail" >
+    <form method="post">
 
         <table>
             <tbody>
@@ -32,7 +43,8 @@
                 <tr>
                     <th>배너 파일</th>
                     <td>
-                        <p th:text="${member.userName}"></p>
+                        <input type="file" id="fileInput" name="bannerFile" onchange="updateFileName()">
+                        <span id="fileName">선택된 파일 없음</span>
                     </td>
                 </tr>
                 <tr>
@@ -44,7 +56,10 @@
                 <tr>
                     <th>오픈 방법</th>
                     <td>
-                        <p th:text="${member.regDt}"></p>
+                        <label for="openMethod"></label><select name="openMethod" id="openMethod">
+                            <option value="newWindow">새 창</option>
+                            <option value="currentWindow">현재창 이동</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -56,11 +71,18 @@
                 <tr>
                     <th>공개 여부</th>
                     <td>
-                        <p th:text="${member.adminYn}"></p>
+                        <input type="checkbox" id="publicCheckbox" name="public" value="true">
+                        <label for="publicCheckbox">공개</label>
                     </td>
                 </tr>
             </tbody>
         </table>
+
+        <div>
+            <button type="submit">배너 등록</button>
+        </div>
+
+    </form>
 
         <div>
             <a href="list.do"> 목록 이동 </a>
@@ -70,4 +92,5 @@
 
 
 </body>
+
 </html>

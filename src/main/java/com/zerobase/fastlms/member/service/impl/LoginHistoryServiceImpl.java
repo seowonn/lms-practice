@@ -21,7 +21,7 @@ public class LoginHistoryServiceImpl implements LoginHistoryService {
 
     @Override
     public List<LoginHistoryDto> list(MemberParam parameter) {
-        Long totalCount =
+        long totalCount =
                 loginHistoryRepository.countByUserId(parameter.getUserId());
 
         Optional<List<LoginHistory>> allByUserId =
