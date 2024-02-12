@@ -54,7 +54,7 @@
         <div class="buttons">
             <p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>
             <a href="/admin/banner/add.do">배너 등록</a>
-            <button id="deleteButton" type="button">선택 삭제</button>
+            <a href="/admin/banner/delete.do">선택 삭제</a>
         </div>
 
         <table>
@@ -67,12 +67,12 @@
                     <th>등록일</th>
                 </tr>
             </thead>
-            <tbody id="bannerList">
+            <tbody id="bannerList" style="text-align : center;">
                 <tr th:each="x : ${list}">
                     <th><label for="select"></label><input type="checkbox" id="select"></th>
                     <td th:text="${x.seq}">1</td>
                     <td th:text="${x.bannerName}">배너명</td>
-                    <td><img th:src="${x.bannerUrl}" alt="배너 이미지" src=""></td>
+                    <td><img th:src="${x.bannerUrl}" alt="배너 이미지" src="" width="auto" height="100"></td>
                     <td>
                         <p th:text="${x.regDtText}">2024.02.11</p>
                     </td>

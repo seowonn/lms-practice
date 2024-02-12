@@ -6,16 +6,16 @@ import com.zerobase.fastlms.admin.model.BannerParam;
 import com.zerobase.fastlms.admin.service.BannerService;
 import com.zerobase.fastlms.course.controller.BaseController;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class AdminBannerController extends BaseController {
 
     private final BannerService bannerService;
