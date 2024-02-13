@@ -9,4 +9,5 @@ import java.util.List;
 public interface BannerService{
     List<BannerDto> list(BannerParam parameter);
     boolean register(BannerInput parameter);
+    void deleteSelectedBanners(List<String> parameters);
 }

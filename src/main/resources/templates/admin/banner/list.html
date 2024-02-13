@@ -35,57 +35,51 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function (){
-            $('selectAll').on('click', function() {
-                var checked = $(this).is(':checked');
-
-                $('#bannerList input[type=checkbox]').each(function (k, v) {
-                    $(this).prop('checked', checked);
-                });
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('selectAll').addEventListener('click', function () {
+                var checkboxes = document.querySelectorAll('input[type=checkbox][name="selectedItems[]"]');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = this.checked;
+                }
             });
         });
     </script>
 </head>
 <body>
-    <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
-    <h1>배너 관리</h1>
+<div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+<h1>배너 관리</h1>
 
-    <div class="list">
-        <div class="buttons">
-            <p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>
-            <a href="/admin/banner/add.do">배너 등록</a>
-            <a href="/admin/banner/delete.do">선택 삭제</a>
-        </div>
-
+<div class="list">
+    <p class="total-count">전체 <span th:text="${totalCount}"></span>개</p>
+    <a href="/admin/banner/add.do">배너 등록</a>
+    <form id="deleteForm" action="/admin/banner/delete.do" method="post">
+        <button type="submit" id="deleteSelected">선택 삭제</button>
         <table>
             <thead>
-                <tr>
-                    <th><label for="selectAll"></label><input id="selectAll" type="checkbox"/></th>
-                    <th>NO</th>
-                    <th>배너명</th>
-                    <th>이미지</th>
-                    <th>등록일</th>
-                </tr>
+            <tr>
+                <th><label><input type="checkbox" id="selectAll"></label></th>
+                <th>NO</th>
+                <th>배너명</th>
+                <th>이미지</th>
+                <th>등록일</th>
+            </tr>
             </thead>
-            <tbody id="bannerList" style="text-align : center;">
-                <tr th:each="x : ${list}">
-                    <th><label for="select"></label><input type="checkbox" id="select"></th>
-                    <td th:text="${x.seq}">1</td>
-                    <td th:text="${x.bannerName}">배너명</td>
-                    <td><img th:src="${x.bannerUrl}" alt="배너 이미지" src="" width="auto" height="100"></td>
-                    <td>
-                        <p th:text="${x.regDtText}">2024.02.11</p>
-                    </td>
-                </tr>
+            <tbody id="bannerList" style="text-align: center;">
+            <tr th:each="x : ${list}">
+                <td><label><input type="checkbox" name="selectedItems[]" th:value="${x.bannerUrl}"></label></td>
+                <td th:text="${x.seq}">1</td>
+                <td th:text="${x.bannerName}">배너명</td>
+                <td><img th:src="${x.bannerUrl}" alt="배너 이미지" src="" width="auto" height="100"></td>
+                <td>
+                    <p th:text="${x.regDtText}">2024.02.11</p>
+                </td>
+            </tr>
             </tbody>
         </table>
+    </form>
 
-        <div class="pager" th:utext="${pager}">
-        </div>
-
-
+    <div class="pager" th:utext="${pager}">
     </div>
-
-
+</div>
 </body>
 </html>

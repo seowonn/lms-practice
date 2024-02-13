@@ -56,4 +56,9 @@ public class BannerServiceImpl implements BannerService{
         bannerRepository.save(banner);
         return true;
     }
+
+    @Override
+    public void deleteSelectedBanners(List<String> parameters) {
+
+    }
 }

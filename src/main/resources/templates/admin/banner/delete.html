@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 화면 </title>
+    <style>
+        .detail table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .detail table th, .detail table td {
+            border:solid 1px #000;
+        }
+
+    </style>
+
+    <script>
+        function updateFileName() {
+            var fileInput = document.getElementById('fileInput');
+            var fileNameDisplay = document.getElementById('fileName');
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = fileInput.files[0].name;
+            } else {
+                fileNameDisplay.textContent = "선택된 파일 없음";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
+    <h1>배너 관리 - 배너 등록</h1>
+
+    <form method="post">
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>배너명</th>
+                    <td>
+                        <input type="text" name="bannerName" placeholder="배너명 입력" required />
+                    </td>
+                </tr>
+                <tr>
+                    <th>배너 파일</th>
+                    <td>
+                        <input type="file" id="bannerImgFile" name="bannerFile" onchange="updateFileName()">
+                    </td>
+                </tr>
+                <tr>
+                    <th>링크 주소</th>
+                    <td>
+                        <input type="text" name="bannerUrl" placeholder="링크 주소 입력" required />
+                    </td>
+                </tr>
+                <tr>
+                    <th>오픈 방법</th>
+                    <td>
+                        <label for="openMethod"></label><select name="openMode" id="openMethod">
+                            <option value="newWindow">오픈 방법 선택</option>
+                            <option value="newWindow">새 창</option>
+                            <option value="currentWindow">현재창 이동</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>정렬 순서</th>
+                    <td>
+                        <input type="text" name="sortOrder" placeholder="정렬 순서 입력" required />
+                    </td>
+                </tr>
+                <tr>
+                    <th>공개 여부</th>
+                    <td>
+                        <input type="checkbox" id="publicCheckbox" name="showYn" value="true">
+                        <label for="publicCheckbox">공개</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <button type="submit">배너 등록</button>
+        </div>
+
+    </form>
+
+        <div>
+            <a href="list.do"> 목록 이동 </a>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
